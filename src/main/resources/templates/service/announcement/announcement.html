@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>공지사항</title>
+    <style type="text/css">
+		section{
+			width: 100%;
+		}
+
+		/* info div style */
+		.infodiv{
+			width: 100%;
+			height: 150px;
+			text-align: center;
+			vertical-align: middle;
+			line-height: 150px;
+		}
+		.infodiv > p{
+			font-size: 33px;
+		}
+
+		/* content style */
+		.wrapcontent{
+			padding-left: 15%;
+			padding-right: 15%;
+		}
+
+		/* headuldiv style */
+		.headuldiv{
+			width: 100%;
+			float: left;
+			text-align: center;
+			vertical-align: middle;
+		}
+
+
+		.headul{
+			margin: 0 auto;
+		}
+
+		.headul li{
+			display: inline-block;
+			text-align: center;
+			width: 200px;
+			height: 40px;
+			font-size: 19px;
+			padding-top: 6.5px;
+			cursor: pointer;
+		}
+		.headul li:hover{
+			background-color: black;
+			color: white;
+		}
+
+		/* 검색 부분 style */
+		.search_box{
+			width: 100%;
+			padding-top: 90px;
+			height: 150px;
+			text-align: center;
+		}
+
+		.sh_text{
+			width: 350px;
+			height: 50px;
+		}
+
+		.search_box button {
+		    width: 44px;
+		    height: 43px;
+		    line-height: 30px;
+		    border: 0;
+		    background: url('../../images/icon/icon_search.png') no-repeat 50%;
+		    background-size: cover;
+		    font-size: 0px;
+		    padding-top: 7px;
+		    margin-left: 15px;
+		}
+
+		/* table style */
+		table {
+		    width: 100%;
+		    border-spacing: 0;
+		    table-layout: fixed;
+		    display: table;
+    		border-collapse: separate;
+        	text-indent: initial;
+            border-color: grey;
+		}
+		.tbl_list{
+			margin-top: 35px;
+		    border-top: 1px solid #555;
+		    height: 100%;
+		    padding-bottom: 20px;
+		}
+
+		th.num, th.title, th.date{
+			height: 60px;
+			color: #333333;
+			font-size: 16px;
+			border-bottom: 1px solid #ddd;
+		}
+
+		.tbl_list th, td{
+			text-align: center;
+		}
+
+		.tbl_list td{
+			height: 40px;
+			color: #555555;
+			font-size: 16px;
+			border-bottom: 1px solid #ddd;
+		}
+
+		.tbl_list tr:last-child{
+			border: none;
+		}
+		.num{
+			width: 15%;
+		}
+
+		.title{
+			width: 70%;
+		}
+		.date{
+			width:15%;
+		}
+
+		/* 글쓰기 버튼 */
+		.btn-group{
+			float: right;
+			margin-bottom: 40px;
+		}
+
+		.btn1{
+			width: 80px;
+			height: 40px;
+			background-color: black;
+			color:#ffffff;
+		}
+	</style>
+</head>
+<body>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready( function() {
+
+          $("#com").load("/joodang/templates/common/common.html");  // 원하는 파일 경로를 삽입하면 된다
+
+        });
+      </script>
+
+    <div id="com"></div>
+    <section>
+        <!-- 상단 컬럼 이름 -->
+        <div class="infodiv"><p class="infop">공지사항</p></div>
+        <div class="wrapcontent">
+
+            <!-- 컬럼 분할 이름 -->
+            <div class="headuldiv">
+                <ul class="headul">
+                    <li onclick="location.href='/joodang/templates/service/faq.html';">FAQ</li>
+                    <li onclick="location.href='/joodang/templates/service/announcement/announcement.html';" style="border-bottom: 3px solid black;">공지사항</li>
+                    <li onclick="location.href='/joodang/templates/service/1by1/1by1_Inquiry.html';">1:1 문의</li>
+                </ul>
+            </div>
+
+
+            <!-- 검색 영역 -->
+            <div class="search_box">
+                <input type="text" class="sh_text" name="keyword" placeholder="검색어를 입력해주세요.">
+                <button type="button" onclick="#">검색</button>
+                <!-- <i class="fa-solid fa-magnifying-glass sh_icon" onclick="#"></i> -->
+            </div>
+
+            <!-- 컨텐츠 영역 -->
+            <div class="tbl_div">
+                <table class="tbl_list">
+                    <colgroup>
+                        <col class="num">
+                        <col class="title">
+                        <col class="date">
+                    </colgroup>
+
+                    <!-- thead 영역 -->
+                    <thead>
+                    <tr>
+                        <th class="num">번호</th>
+                        <th class="title">제목</th>
+                        <th class="date">작성일</th>
+                    </tr>
+                    </thead>
+
+                    <!-- tbody 영역 -->
+                    <tr>
+                        <td class="num">1</td>
+                        <td class="title">2</td>
+                        <td class="date">3</td>
+                    </tr>
+
+                    <tr>
+                        <td class="num">1</td>
+                        <td class="title">2</td>
+                        <td class="date">3</td>
+                    </tr>
+
+                    <tr>
+                        <td class="num">1</td>
+                        <td class="content">2</td>
+                        <td class="date">3</td>
+                    </tr>
+
+                    <tr>
+                        <td class="num">1</td>
+                        <td class="title">2</td>
+                        <td class="date">3</td>
+                    </tr>
+
+                    <tr>
+                        <td class="num">1</td>
+                        <td class="title">2</td>
+                        <td class="date">3</td>
+                    </tr>
+                </table>
+
+                <!-- 글쓰기 버튼 -->
+                <div class="btn-group">
+                    <div class="">
+                        <button id="submit" type="submit" class="btn1" onclick="location.href='/joodang/templates/service/announcement/anno_InsertForm.html'">글쓰기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
