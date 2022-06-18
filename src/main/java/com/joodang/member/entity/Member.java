@@ -1,5 +1,6 @@
 package com.joodang.member.entity;
 
+import com.joodang.member.constant.Gender;
 import com.joodang.member.constant.Role;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +22,8 @@ public class Member {
     @Column(nullable = false)
     private String mPhone;
 
-    private String mGender;
+    @Enumerated(EnumType.STRING)
+    private Gender mGender;
 
     @Column(nullable = false)
     private String mZipcode;
