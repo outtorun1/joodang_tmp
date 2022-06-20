@@ -6,8 +6,8 @@
   <meta charset="UTF-8">
   <title>회원가입2</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-  <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 </head>
 <th:block layout:fragment="script">
@@ -87,7 +87,6 @@
 		$('#password').focus(function(){
 			$('#pw2,#pw3,#pw4').show();
 			$('#password').on("propertychange change paste input", function() {
-				<%-- 8자 이상 15자 이하입력--%>
 				if(!($('#password').val().length>=8&&$('#password').val().length<=15)){
 					$('#pw2').addClass('notForm');
 					$('#pw2').removeClass('yesForm');
@@ -95,7 +94,6 @@
 					$('#pw2').addClass('yesForm');
 					$('#pw2').removeClass('notForm');
 				}
-				<%-- 특수 문자는 1가지 이상 다른 특수문자 안됨 --%>
 
 				if($('#password').val().indexOf("@")>=0 ||
 				$('#password').val().indexOf("!")>=0 ||
@@ -115,7 +113,6 @@
 					$('#pw3').addClass('notForm');
 					$('#pw3').removeClass('yesForm');
 				}
-				<%-- 영문/숫자/특수문자(공백제외)만 허용가능, 2개이상 조합  --%>
 				var reg1 =/[a-z]{1,}[0-9]{1,}/;
 				var result1 = reg1.test($('#password').val());
 				var reg2 =/[!@#$]{1,}[0-9]{1,}/;
@@ -131,7 +128,6 @@
 					$('#pw4').removeClass('yesForm');
 
 				}
-				<%-- 공백문자 들어올시 --%>
 				var reg=/\s/;
 				if(reg.test($('#password').val())){
 					$('#pw4').removeClass('yesForm');
@@ -295,10 +291,11 @@
 
 		});
 
-		*/
 
 
 	});
+
+		*/
 
 	//우편번호찾기
 	function kakaopost() {
@@ -313,7 +310,7 @@
 	function idcheck(){
 		//중복검사
 		var email = $('#email').val();
-		var url = '<%=contextPath%>/employee/IdCheck.jsp?email=' + email ; //파라미터를 던져주는 이유
+		var url = '/employee/IdCheck.jsp?email=' + email ; //파라미터를 던져주는 이유
 		var options = 'left=750, right=500,top=50, height=100,width=400,status=yes,scollbars=yes';
 		window.open(url,'check',options);
 		window.resizeTo(100, 100);

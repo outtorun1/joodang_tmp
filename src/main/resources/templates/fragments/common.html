@@ -17,8 +17,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-
-
     <style type="text/css">
 		* {
 			margin: 0;
@@ -289,7 +287,7 @@
 <div class="container-fluid bg common_header" th:fragment="header">
     <div class="row">
         <div class="main_header">
-            <a id="logoImg" href="/joodang/templates/common/main.html">
+            <a id="logoImg" href="/">
                 <img id="mainLogo" src="https://ifh.cc/g/B6r4Q5.png">
             </a>
             <nav>
@@ -297,7 +295,7 @@
                     <!-- 미로그인 상태 -->
                     <div sec:authorize="isAnonymous()">
                         <!-- 로그인 페이지로 이동 -->
-                        <a class="right_menu" href="#">
+                        <a class="right_menu" href="/member/meLogin">
                             <span class="glyphicon glyphicon-shopping-cart"></span>
                         </a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -318,49 +316,49 @@
                     </div>
 
                     <!-- 고객 로그인 상태 -->
-                    <div sec:authorize="isAuthenticated()">
+                    <div sec:authorize="hasAnyAuthority('ROLE_USER')">
                         <!-- 장바구니 페이지로 이동 -->
 
                         <!-- 추후 수정 -->
-                        <a class="right_menu" href="/joodang/cart/cartList.html">
+                        <a class="right_menu" href="#">
                             <span class="glyphicon glyphicon-shopping-cart"></span>
                         </a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <!-- 찜리스트 페이지로 이동 -->
-                        <a class="right_menu" href="<%=noForm%>meWish">
+                        <a class="right_menu" href="#">
                             <span class="glyphicon glyphicon-heart"></span>
                         </a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <!-- 마이 페이지로 이동 -->
-                        <a class="right_menu" href="/member/meInsertFirst">
+                        <a class="right_menu" href="#">
                             <span class="glyphicon glyphicon-user"></span>
                         </a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <!-- 로그 아웃 하고 메인페이지로 이동 -->
-                        <a class="right_menu" href="<%=noForm%>meLogout">
+                        <a class="right_menu" href="/member/meLogout">
                             <span class="glyphicon glyphicon-log-out"></span>
                         </a>
                     </div>
 
                     <!-- 관리자 로그인 상태 -->
-                    <div sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+                    <div sec:authorize="hasAnyAuthority('ROLE_HQ', ROLE_BRANCH)">
                         <!--  -->
-                        <a class="right_menu" href="<%=noForm%>">
+                        <a class="right_menu" href="#">
                             <span class="glyphicon glyphicon-shopping-cart"></span>
                         </a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <!--  -->
-                        <a class="right_menu" href="<%=noForm%>">
+                        <a class="right_menu" href="#">
                             <span class="glyphicon glyphicon-heart"></span>
                         </a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <!--  -->
-                        <a class="right_menu" href="<%=noForm%>">
+                        <a class="right_menu" href="#">
                             <span class="glyphicon glyphicon-user"></span>
                         </a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <!-- 로그 아웃 하고 메인페이지로 이동 -->
-                        <a class="right_menu" href="<%=noForm%>meLogout">
+                        <a class="right_menu" href="/member/meLogout">
                             <span class="glyphicon glyphicon-log-out"></span>
                         </a>
                     </div>
@@ -375,28 +373,28 @@
                         <a class="navbarClass dropdown-toggle-story" data-toggle="dropdown"
                            href="#">전통주 이야기</a>
                         <ul class="dropdown-menu">
-                            <li><a href="/joodang/templates/story/history.html">전통주 역사</a></li>
+                            <li><a href="/history">전통주 역사</a></li>
                             <li class="divider"></li>
-                            <li><a href="/joodang/templates/story/compare.html">전통주 비교</a></li>
+                            <li><a href="/compare">전통주 비교</a></li>
                             <li class="divider"></li>
-                            <li><a href="/joodang/templates/story/eat.html">전통주 먹는 법</a></li>
+                            <li><a href="/eat">전통주 먹는 법</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
                         <a class="navbarClass dropdown-toggle-product" data-toggle="dropdown"
                            href="#">전통주 장터</a>
                         <ul class="dropdown-menu">
-                            <li><a href="<%=contextPath%>/product/product.html">전통주 장터</a></li>
+                            <li><a href="#">전통주 장터</a></li>
                             <li class="divider"></li>
-                            <li><a href="<%=contextPath%>/product/productRiceWine.html">탁주</a></li>
+                            <li><a href="#">탁주</a></li>
                             <li class="divider"></li>
-                            <li><a href="<%=contextPath%>/product/productChengJu.html">청주/약주</a></li>
+                            <li><a href="#">청주/약주</a></li>
                             <li class="divider"></li>
-                            <li><a href="<%=contextPath%>/product/productFruitWine.html">과실주</a></li>
+                            <li><a href="#">과실주</a></li>
                             <li class="divider"></li>
-                            <li><a href="<%=contextPath%>/product/productLiquor.html">증류주</a></li>
+                            <li><a href="#">증류주</a></li>
                             <li class="divider"></li>
-                            <li><a href="<%=contextPath%>/product/productAlcoholic.html">기타 주류</a></li>
+                            <li><a href="#">기타 주류</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -412,13 +410,13 @@
                         <a class="navbarClass dropdown-toggle-service" data-toggle="dropdown"
                            href="#">고객센터</a>
                         <ul class="dropdown-menu">
-                            <li><a href="/joodang/templates/service/faq.html">FAQ</a></li>
+                            <li><a href="/faq">FAQ</a></li>
                             <li class="divider"></li>
-                            <li><a href="/joodang/templates/service/announcement/announcement.html">공지사항</a></li>
+                            <li><a href="/announcement">공지사항</a></li>
                             <li class="divider"></li>
-                            <li><a href="/joodang/templates/service/1by1/1by1_Inquiry.html">1:1문의</a></li>
+                            <li><a href="/1by1_Inquiry">1:1문의</a></li>
                             <li class="divider"></li>
-                            <li><a href="/joodang/templates/service/way_to_come.html">오시는길</a></li>
+                            <li><a href="/way_to_come">오시는길</a></li>
                         </ul>
                     </li>
                 </ul>
