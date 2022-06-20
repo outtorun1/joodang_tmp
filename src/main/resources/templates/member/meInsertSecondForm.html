@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/xhtml">
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head th:replace="fragments/common :: html-head">
   <meta charset="UTF-8">
   <title>회원가입2</title>
@@ -10,7 +11,7 @@
 
 </head>
 <th:block layout:fragment="script">
-  <script type="text/javascript">
+  <script th:inline="javascript">
 		/*
 		//아이디
 		$('#id1, #id2, #id3').hide().addClass('notForm');
@@ -247,15 +248,18 @@
 
 		// 성별 = 기능 안됨ㅠㅠ
 		$('#genderGet1, #genderGet2').hide().addClass('notForm');
-		$('#radioCheck').focus(function(){
+
+		let focus = $('#radioCheck').focus(function(){
 			if($('input:radio[name=gender]').is(":checked")==false){ //체크를 안 했으면
-			$('#genderGet1').addClass('yesForm');
-			$('#genderGet1').removeClass('notForm');
+                $('#genderGet1').addClass('yesForm');
+                $('#genderGet1').removeClass('notForm');
 			}else{  //체크했으면
 				$('#genderGet2').addClass('notForm');
 				$('#genderGet2').addClass('yesForm');
 			}
-		});
+		}) ;
+
+
 		/*
 		// 성별 하는 중
 		$('#radioCheck').focusout(function(){
@@ -300,8 +304,8 @@
 	function kakaopost() {
 	    new daum.Postcode({
 	        oncomplete: function(data) {
-	           document.querySelector("#zipcode").value = data.zonecode;
-	           document.querySelector("#address1").value = data.address;
+	           document.getElementById("#mZipcode").value = data.zonecode;
+	           document.getElementById("#mAddress1").value = data.address;
 	        }
 	    }).open();
 	}
@@ -326,7 +330,7 @@
 </th:block>
 
 <th:block layout:fragment="css">
-  <style type="text/css">
+  <style>
 
 *{margin: 0 auto;padding: 0 auto;box-sizing: border-box;}
 body{font-family: 'Note Sans KR', sans-serif;}
@@ -549,9 +553,8 @@ color:white;
 
     <div th:replace="fragments/common :: header"></div>
     <section>
+      <form action="/member/meInsert" method="post" role="form" th:object="${memberFormDto}">
 
-      <form name="myform" action="<%=yesForm%>" method="post">
-        <input type="hidden" name="command" value="meInsert">
         <div class="container">
           <div class="page_tit">
             <h2><span>회원가입</span></h2>
@@ -565,14 +568,15 @@ color:white;
           </div>
 
 
+
           <div class="rgform1" align="center">
             <p class="page_sub" ><span class="ico">*</span>필수사항입력</p>
             <table class="rgtable">
               <tr>
-                <th class="rgth">이메일<span class="ico">*</span></th>
+                <th class="rgth" >이메일<span class="ico">*</span></th>
                 <td class="rgtd">
-                  <input class="rginput" type="text" name="email" id="email"
-                         placeholder="so4380@naver.com" value="">
+                  <input class="rginput" type="text" id="email"
+                         placeholder="so4380@naver.com" th:field="*{email}">
                   <a class="btn_check" id="aaa" onclick="return idcheck();" >중복확인</a>
                   <p class="textsize" id="emailGet1">* 이메일은 필수 입력 사항입니다.</p>
                   <p class="textsize" id="emailGet2">* 이메일 주소를 적어주세요.</p>
@@ -597,7 +601,7 @@ color:white;
                 <th class="rgth">비밀번호<span class="ico">*</span></th>
                 <td class="rgtd">
                   <input class="rginput" type="password" name="password" id="password"
-                         placeholder="비밀번호를 입력하세요." value="" >
+                         placeholder="비밀번호를 입력하세요." th:field="*{mPassword}">
                   <p class="textsize" id="pw1">* 비밀번호는 필수 입력 사항입니다</p>
                   <p class="textsize" id="pw2">* 8자 이상 15자 미만 입력</p>
                   <p class="textsize" id="pw3">* 특수문자는 1가지 이상(!,@,#,$ 만 가능)</p>
@@ -617,8 +621,8 @@ color:white;
               <tr>
                 <th class="rgth">이름<span class="ico">*</span></th>
                 <td class="rgtd">
-                  <input class="rginput" type="text" name="name" id="name"
-                         placeholder="이름을 입력해주세요" value="">
+                  <input class="rginput" type="text" id="name"
+                         placeholder="이름을 입력해주세요" th:field="*{mName}">
                   <p class="textsize" id="name1">* 이름은 필수 입력 사항입니다.</p>
 
                 </td>
@@ -626,7 +630,7 @@ color:white;
               <tr>
                 <th class="rgth">닉네임<span class="ico">*</span></th>
                 <td class="rgtd">
-                  <input class="rginput" type="text" name="nickname" id="nickname"
+                  <input class="rginput" type="text" id="nickname"
                          placeholder="닉네임을 입력해주세요" value="">
                   <p class="textsize" id="nicknameGet1">* 닉네임은 필수 입력 사항입니다.</p>
                   <p class="textsize" id="nicknameGet2">* 닉네임은 15글자 이내로 적어주세요.</p>
@@ -635,8 +639,7 @@ color:white;
               <tr>
                 <th class="rgth">휴대전화<span class="ico">*</span></th>
                 <td class="rgtd">
-                  <input class="rginput" type="text" name="phone" id="phone"
-                         placeholder="ex) 010-1234-1234" value="">
+                  <input class="rginput" type="text" id="phone" placeholder="ex) 010-1234-1234" th:field="*{mPhone}">
                   <p class="textsize" id="phoneGet1">* 전화번호는 필수 입력 사항입니다.</p>
                   <p class="textsize" id="phoneGet2">* 전화번호는 하이픈(-)을 적어주세요.</p>
                   <p class="textsize" id="phoneGet3">* ex) 010-1234-1234</p>
@@ -647,8 +650,8 @@ color:white;
                 <th class="rgth">주소<span class="ico">*</span></th>
                 <td class="rgtd3" >
                   <div id="c">
-                    <input class="rginput" type="text" name="zipcode" id="zipcode" placeholder="우편번호" size="7" value="" readonly>
-                    <input class="btn_check rginput" type="button" value="우편번호찾기"  onclick="kakaopost();">
+                    <input class="rginput" type="text" th:field="*{mZipcode}" id="zipcode" placeholder="우편번호" size="7" value="" readonly>
+                    <input class="btn_check rginput" type="button" value="우편번호찾기"  onclick="kakaopost()">
                   </div>
                   <div class="adress" align="left">
                     <input class="rginput" type="text" name="address1" id="address1"  placeholder="주소" size="70" value="" readonly>
@@ -678,9 +681,11 @@ color:white;
 
             </table>
             <p class="page_sub" ></p>
-            <button class="btn_register" type="submit" onclick="return clicksave();">가입하기</button>
+<!--            <button class="btn_register" type="submit" onclick="return clicksave();">가입하기</button>-->
+            <button class="btn_register" type="submit">가입하기</button>
 
           </div>
+          <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
         </div>
 
 

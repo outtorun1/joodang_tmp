@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/xhtml">
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head th:replace="fragments/common :: html-head">
   <meta charset="UTF-8">
-  <title>JooDang / 회원가입</title>
+  <title>JooDang</title>
 
 </head>
-  <style type="text/css">
-
+<th:block layout:fragment="css">
+  <style>
 		body{
 			height: 1025.25px;
 			background-size: cover;
@@ -45,7 +46,7 @@
 			margin: 0 auto;
 			margin-top: 5px;
 			background-image: url("https://ifh.cc/g/2dbQ5p.jpg");
-			background-repeat: no;
+			background-repeat: no-repeat;
 			background-size: cover;
 			border-radius: 10px;
 			opacity: 0.85;
@@ -64,6 +65,7 @@
 			font-size: 22px;
 		}
 	</style>
+</th:block>
 <body>
   <!--<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript">
@@ -76,7 +78,7 @@
 
   <div id="com"></div>-->
 
-  <div th:replace="common/common :: header"></div>
+  <div th:replace="fragments/common :: header"></div>
   <section>
 
    <!-- &lt;!&ndash; 슬라이드 메인 &ndash;&gt;
@@ -136,6 +138,6 @@
 
   </section>
 
-  <div th:replace="common/common :: footer"></div>
+  <div th:replace="fragments/common :: footer"></div>
   </body>
 </html>

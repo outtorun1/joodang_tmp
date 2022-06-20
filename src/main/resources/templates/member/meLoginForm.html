@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<meta charset="UTF-8">
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+	<title>Insert title here</title>
+</head>
+<th:block layout:fragment="css">
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: 'Note Sans KR', sans-serif;
+			justify-content: center;
+			height: 100vh;
+			background-size: cover;
+		}
+
+		body::before {
+			z-index: 2;
+		}
+
+		.login-form{
+
+			width: 500px;
+			margin: 80px auto;
+		}
+		.form_box{
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		.login-form h1 {
+			font-size: 32px;
+			color: black;
+			text-align: center;
+			margin-bottom: 60px;
+		}
+
+		.int-area {
+			width: 400px;
+			position: relative;
+			margin-top: 20px;
+		}
+
+		.int-area:first-child {
+			margin-top: 0;
+		}
+
+		.int-area input {
+			width: 100%;
+			padding: 20px 10px 10pxp;
+			background-color: transparent;
+			border: none;
+			border-bottom: 1px solid #999;
+			font-size: 18px;
+			color: black;
+			outline: none;
+		}
+
+		.int-area label {
+			position: absolute;
+			left: 10px;
+			top: -10px;
+			font-size: 18px;
+			color: #999;
+			transition: top .5s ease;
+		}
+
+		.int-area input:focus+label, .int-area input:valid+label {
+			top: -2px;
+			font-size: 13px;
+			color: #166cea;
+		}
+
+		.btn-area {
+			margin-top: 30pxp;
+		}
+		/*로그인 버튼*/
+		.btn-area button {
+			margin-top: 20px;
+			margin-bottom : 20px;
+			width: 100%;
+			height: 50px;
+			background: #DEB887;
+			color: #fff;
+			font-size: 20px;
+			border: none;
+			border-radius: 25px;
+			width: 100%;
+		}
+		.btn-area button:hover{
+			background: #DEB887;
+			color: threedshadow;
+			box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+		}
+		.caption {
+			text-align: center;
+		}
+
+		.caption li {
+			display: inline-block;
+			margin-top: 30px;
+			margin: 0px 20px;
+		}
+
+		.caption a {
+			font-size: 15px;
+			color: #999;
+			text-decoration: none;
+		}
+
+		.img_li{
+			float: left;
+			text-align: center;
+		}
+		#GgCustomLogin{
+			float: left;
+		}
+		.icon_api{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	</style>
+</th:block>
+
+<th:block layout:fragment="script">
+	<script type="text/javascript">
+    $(document).ready( function() {
+       $("#com").load("/joodang/templates/fragments/common.html");  // 원하는 파일 경로를 삽입하면 된다
+    });
+
+	$(document).ready( function() {
+	$("#facebook").load("/joodang/templates/member/Login_api/FacebookApi.html");  // 원하는 파일 경로를 삽입하면 된다
+	});
+
+	$(document).ready( function() {
+	$("#google").load("/joodang/templates/member/Login_api/googleApi.html");  // 원하는 파일 경로를 삽입하면 된다
+	});
+
+	$(document).ready( function() {
+	$("#kakao").load("/joodang/templates/member/Login_api/kakaologinApi.html");  // 원하는 파일 경로를 삽입하면 된다
+	});
+
+	$(document).ready( function() {
+	$("#naver").load("/joodang/templates/member/Login_api/NaverApi.html");  // 원하는 파일 경로를 삽입하면 된다
+	});
+  </script>
+</th:block>
+<body>
+
+
+<div th:replace="fragments/common :: header"></div>
+<section>
+<div id="com"></div>
+	<section class="login-form">
+		<h1>로그인 페이지</h1>
+      <form class="form_box" action="/member/meLogin" method="post">
+         <input type="hidden" name="command" value="meLogin">
+			<div class="int-area">
+				<input type="email" name="id" id="id" autocomplete="off"
+					placeholder="User Email" required> <label th:for="email"></label>
+			</div>
+			<div class="int-area">
+				<input type="password" name="password" id="password" autocomplete="offname"
+					placeholder="User Passwoord" required> <label th:for="password"></label>
+
+				<div class="btn-area">
+					<button type="submit">Login</button>
+				</div>
+			</div>
+		</form>
+		<div class="caption">
+			<ul>
+				<li class="tag_01"><a href=""><strong>아이디 찾기</strong></a></li>
+				<li class="tag_01"><a href=""><strong>비밀번호 재발급</strong></a></li>
+				<li class="tag_01"><a href=""><strong>회원가입</strong></a></li>
+			</ul>
+			<div class=icon_api>
+				<div id="facebook"></div>
+				<div id="google"></div>
+				<div id="kakao"></div>
+				<div id="naver"></div>
+			</div>
+		</div>
+	</section>
+
+	<div th:replace="fragments/common :: footer"></div>
+</body>
+</html>

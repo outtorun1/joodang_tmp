@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:fragment="html-head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;900&family=Yeon+Sung&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/74c7988be3.js" crossorigin="anonymous"></script>
+
+    <!-- for BootStrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+
+    <style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+			scroll-behavior: smooth;
+			font-family: 'Noto Sans KR', sans-serif;
+			font-family: 'Yeon Sung', cursive;
+		}
+
+		body {
+			min-height: 100%;
+		}
+
+		.row {
+			height: 205px;
+		}
+
+		#mainLogo {
+			margin-top: 15px;
+			width: 320px;
+
+		}
+
+		.right_menu_div {
+			position: relative;
+			display: inline-block;
+			vertical-align: baseline;
+			top: 20%;
+			margin-right: 100px;
+		}
+
+		.right_menu {
+			font-size: 25px;
+			color: black;
+		}
+
+		#logoImg {
+			display: inline_block;
+			text-align: center;
+		}
+
+		.main_header {
+			display: block;
+			position: relative;
+			text-align: center;
+			background-color: #F5F5F5
+
+		}
+
+		.navbarClass {
+			font-size: 25px;
+			margin-right: 140px;
+			color: #FFFFFF;
+		}
+
+		.navbar-collapse {
+			float: none;
+			display: inline-block;
+			vertical-align: top;
+			padding-left: 0;
+			padding-right: 0;
+		}
+
+		.right_menu_div {
+			position: absolute;
+			right: 0;
+		}
+
+		.right_menu:hover{
+			text-decoration: none;
+			color: #444444;
+		}
+
+		#navDiv {
+			border-top: 1px solid #000000;
+			border-bottom: 1px solid #000000;
+			background-color: #444444;
+		}
+
+		.navbar-nav>li>a:hover, .navbar-nav>li>a:focus {
+			color: #FFFFFF;
+			background-color: rgb(83, 61, 40);
+		}
+
+		.dropdown-menu {
+			font-size: 23px;
+		}
+
+		.btn_gotop {
+			display: none;
+			position: fixed;
+			bottom: 30px;
+			right: 30px;
+			z-index: 999;
+			border: 1px solid #ccc;
+			outline: none;
+			background-color: white;
+			color: #333;
+			cursor: pointer;
+			padding: 15px 20px;
+			border-radius: 100%;
+		}
+
+		.btn_gotop:hover .glyphicon {
+			color: #F5F5F5;
+		}
+
+		.btn_gotop:hover {
+			background-color: black;
+		}
+
+		html {
+			position: relative;
+			min-height: 100%;
+			margin: 0;
+			padding-bottom: 30px;
+		}
+
+		#footer01 {
+			background-color: #252525;
+			color: #ccc;
+			width: 100%;
+			height: 250px;
+
+		}
+
+		.foot01 {
+			list-style: none;
+			text-align: center;
+
+		}
+
+		.foot01_1 {
+			display: inline-block;
+			padding-top: 20px;
+		}
+
+		.foot01_1_1:before {
+			content: ' \2223';
+		}
+
+		.foot01_1_2:before {
+			content: ' \2223';
+		}
+
+		#footer04 {
+			margin-top: 20px;
+			width: 100%;
+			height: 50px;
+			align: center;
+		}
+
+		#footer {
+			width: 100%;
+			height: 50px;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+		}
+
+
+    </style>
+
+    <script type="text/javascript">
+		$(document).ready(function() {
+
+			$('.dropdown-toggle-story').mouseover(function() {
+					$('.dropdown-toggle-story').next('.dropdown-menu').show();
+			});
+
+			$('.dropdown-toggle-story').mouseout(function() {
+				t = setTimeout(function() {
+					$('.dropdown-toggle-story').next('.dropdown-menu').hide();
+				}, 100);
+
+				$('.dropdown-toggle-story')
+					.next('.dropdown-menu').on('mouseenter', function() {
+						$('.dropdown-toggle-story').next('.dropdown-menu').show();
+						clearTimeout(t);
+					})
+					.on('mouseleave', function() {
+						$('.dropdown-toggle-story').next('.dropdown-menu').hide();
+					})
+			});
+
+			$('.dropdown-toggle-board').mouseover(function() {
+						$('.dropdown-toggle-board').next(
+								'.dropdown-menu').show();
+			});
+
+
+
+			$('.dropdown-toggle-product').mouseover(function() {
+				console.log($('.dropdown-toggle-product').children('.dropdown-menu'));
+
+				$('.dropdown-toggle-product').next('.dropdown-menu').show();
+			});
+
+			$('.dropdown-toggle-product').mouseout(function() {
+				t = setTimeout(function() {
+					$('.dropdown-toggle-product').next('.dropdown-menu').hide();
+				}, 100);
+
+				$('.dropdown-toggle-product').next('.dropdown-menu').on('mouseenter',function() {
+					$('.dropdown-toggle-product').next('.dropdown-menu').show();
+					clearTimeout(t);
+				}).on('mouseleave',function() {
+					$('.dropdown-toggle-product').next('.dropdown-menu').hide();
+				})
+			});
+
+			$('.dropdown-toggle-commuity').mouseover(function() {
+				$('.dropdown-toggle-commuity').next('.dropdown-menu').show();
+			});
+
+			$('.dropdown-toggle-commuity').mouseout(function() {
+				t = setTimeout(function() {
+					$('.dropdown-toggle-commuity').next('.dropdown-menu').hide();
+				}, 100);
+
+				$('.dropdown-toggle-commuity').next('.dropdown-menu').on('mouseenter',function() {
+					$('.dropdown-toggle-commuity').next('.dropdown-menu').show();
+					clearTimeout(t);
+				}).on('mouseleave',function() {
+					$('.dropdown-toggle-commuity').next('.dropdown-menu').hide();
+				})
+			});
+
+			$('.dropdown-toggle-service').mouseover(function() {
+						$('.dropdown-toggle-service').next('.dropdown-menu').show();
+			});
+
+			$('.dropdown-toggle-service').mouseout(function() {
+				t = setTimeout(function() {
+					$('.dropdown-toggle-service').next('.dropdown-menu').hide();
+				}, 100);
+
+				$('.dropdown-toggle-service').next('.dropdown-menu').on('mouseenter',function() {
+					$('.dropdown-toggle-service').next('.dropdown-menu').show();
+					clearTimeout(t);
+				}).on('mouseleave', function() {
+					$('.dropdown-toggle-service').next('.dropdown-menu').hide();
+				})
+			});
+
+			<!--top 버튼 쿼리-->
+			$(window).scroll(function() {
+				if ($(this).scrollTop() > 200) {
+					$('.btn_gotop').show();
+				} else {
+					$('.btn_gotop').hide();
+				}
+			});
+
+			$('.btn_gotop').click(function() {
+				$('html, body').animate({
+					scrollTop : 0
+				}, 50);
+				return false;
+			});
+		});
+
+    </script>
+</head>
+<body>
+
+<!--header 영역-->
+<div class="container-fluid bg common_header" th:fragment="header">
+    <div class="row">
+        <div class="main_header">
+            <a id="logoImg" href="/joodang/templates/common/main.html">
+                <img id="mainLogo" src="https://ifh.cc/g/B6r4Q5.png">
+            </a>
+            <nav>
+                <div class="right_menu_div">
+                    <!-- 미로그인 상태 -->
+                    <div sec:authorize="isAnonymous()">
+                        <!-- 로그인 페이지로 이동 -->
+                        <a class="right_menu" href="#">
+                            <span class="glyphicon glyphicon-shopping-cart"></span>
+                        </a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <!-- 로그인 페이지로 이동 -->
+                        <a class="right_menu" href="/member/meLogin">
+                            <span class="glyphicon glyphicon-heart"></span>
+                        </a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <!-- 회원가입 페이지로 이동 -->
+                        <a class="right_menu" href="/member/meInsertFirst">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <!-- 로그인 페이지로 이동 -->
+                        <a class="right_menu" href="/member/meLogin">
+                            <span class="glyphicon glyphicon-log-in"></span>
+                        </a>
+                    </div>
+
+                    <!-- 고객 로그인 상태 -->
+                    <div sec:authorize="isAuthenticated()">
+                        <!-- 장바구니 페이지로 이동 -->
+
+                        <!-- 추후 수정 -->
+                        <a class="right_menu" href="/joodang/cart/cartList.html">
+                            <span class="glyphicon glyphicon-shopping-cart"></span>
+                        </a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <!-- 찜리스트 페이지로 이동 -->
+                        <a class="right_menu" href="<%=noForm%>meWish">
+                            <span class="glyphicon glyphicon-heart"></span>
+                        </a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <!-- 마이 페이지로 이동 -->
+                        <a class="right_menu" href="/member/meInsertFirst">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <!-- 로그 아웃 하고 메인페이지로 이동 -->
+                        <a class="right_menu" href="<%=noForm%>meLogout">
+                            <span class="glyphicon glyphicon-log-out"></span>
+                        </a>
+                    </div>
+
+                    <!-- 관리자 로그인 상태 -->
+                    <div sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+                        <!--  -->
+                        <a class="right_menu" href="<%=noForm%>">
+                            <span class="glyphicon glyphicon-shopping-cart"></span>
+                        </a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <!--  -->
+                        <a class="right_menu" href="<%=noForm%>">
+                            <span class="glyphicon glyphicon-heart"></span>
+                        </a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <!--  -->
+                        <a class="right_menu" href="<%=noForm%>">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <!-- 로그 아웃 하고 메인페이지로 이동 -->
+                        <a class="right_menu" href="<%=noForm%>meLogout">
+                            <span class="glyphicon glyphicon-log-out"></span>
+                        </a>
+                    </div>
+
+                </div>
+            </nav>
+        </div>
+        <div id="navDiv" class="navbar">
+            <div class="container-fluid text-center dropdown">
+                <ul class="nav navbar-nav navbar-collapse" id="abc">
+                    <li class="active nav-item">
+                        <a class="navbarClass dropdown-toggle-story" data-toggle="dropdown"
+                           href="#">전통주 이야기</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/joodang/templates/story/history.html">전통주 역사</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/joodang/templates/story/compare.html">전통주 비교</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/joodang/templates/story/eat.html">전통주 먹는 법</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbarClass dropdown-toggle-product" data-toggle="dropdown"
+                           href="#">전통주 장터</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="<%=contextPath%>/product/product.html">전통주 장터</a></li>
+                            <li class="divider"></li>
+                            <li><a href="<%=contextPath%>/product/productRiceWine.html">탁주</a></li>
+                            <li class="divider"></li>
+                            <li><a href="<%=contextPath%>/product/productChengJu.html">청주/약주</a></li>
+                            <li class="divider"></li>
+                            <li><a href="<%=contextPath%>/product/productFruitWine.html">과실주</a></li>
+                            <li class="divider"></li>
+                            <li><a href="<%=contextPath%>/product/productLiquor.html">증류주</a></li>
+                            <li class="divider"></li>
+                            <li><a href="<%=contextPath%>/product/productAlcoholic.html">기타 주류</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbarClass dropdown-toggle-commuity" data-toggle="dropdown"
+                           href="#">커뮤니티</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">전통주에 어울리는 안주</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">전통주 빚기</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbarClass dropdown-toggle-service" data-toggle="dropdown"
+                           href="#">고객센터</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/joodang/templates/service/faq.html">FAQ</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/joodang/templates/service/announcement/announcement.html">공지사항</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/joodang/templates/service/1by1/1by1_Inquiry.html">1:1문의</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/joodang/templates/service/way_to_come.html">오시는길</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--footer 영역-->
+<footer id="footer" th:fragment="footer">
+    <div id="footer01" align="center">
+        <div id="footer04">
+            <ul class="foot01">
+                <li class="foot01_1">개인정보취급방침&nbsp;</li>
+                <li class="foot01_1 foot01_1_1">&nbsp;이용약관&nbsp;</li>
+                <li class="foot01_1 foot01_1_2">&nbsp;이메일부단수집거부</li>
+            </ul>
+        </div>
+        <div>
+            <ul class="foot01">
+                <li class="foot01_1">(주) 주 당</li>
+                <li class="foot01_1 foot01_1_1">대표 : 송치국</li>
+                <li class="foot01_1 foot01_1_2">사업자등록번호 : 000-00-000</li>
+            </ul>
+        </div>
+        <div>
+            <ul class="foot01">
+                <li class="foot01_1">주소 : 서울시 금천구 가산동 112 (주)주</li>
+                <li class="foot01_1 foot01_1_1"> 전화번호: 02-000-000</li>
+            </ul>
+        </div>
+        <div>
+            <ul class="foot01">
+                <li class="foot01_1">통신판매업신고:2022-서울금천구-0001</li>
+                <li class="foot01_1 foot01_1_1"> 개인정보관리책임자 : 백주현</li>
+            </ul>
+        </div>
+        <P>Copyrightⓒ2022 JOODANG.ALL Rights Reserved.</P>
+        <P>Design by DoenKim</P>
+    </div>
+</footer>
+</body>
+</html>
